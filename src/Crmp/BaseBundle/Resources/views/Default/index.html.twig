@@ -8,12 +8,13 @@
     <title>{% block title %}CRMP{% endblock %}</title>
 
     {% block stylesheets %}
-        {% stylesheets '@CrmpBaseBundle/Resources/public/css/base.scss' filter='cssrewrite' %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% stylesheets filter="scssphp" output="css/base.css"
+        '@CrmpBaseBundle/Resources/public/css/base.scss' %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
     {% endblock %}
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
 
