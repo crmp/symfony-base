@@ -1,3 +1,7 @@
+crmp_base:
+    resource: "@CrmpBaseBundle/Resources/config/routing.xml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
