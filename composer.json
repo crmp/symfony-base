@@ -1,5 +1,6 @@
 {
   "name": "mike/symfony-base",
+  "description": "Base setup for CRMP on Symfony.",
   "license": "proprietary",
   "type": "project",
   "autoload": {
