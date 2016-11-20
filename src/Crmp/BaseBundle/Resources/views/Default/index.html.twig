@@ -9,7 +9,7 @@
 
     {% block stylesheets %}
         {% stylesheets filter="scssphp" output="css/base.css"
-        '@CrmpBaseBundle/Resources/assets/scss/base.scss' %}
+        '@CrmpBaseBundle/Resources/public/scss/base.scss' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
     {% endblock %}
@@ -25,7 +25,7 @@
 {% block javascripts %}
     {# Apply jsqueeze when not in debug mode (leading "?") #}
     {% javascripts filter="?jsqueeze" output="js/base.js"
-    '@CrmpBaseBundle/Resources/assets/js/*' %}
+    '@CrmpBaseBundle/Resources/public/js/*' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
