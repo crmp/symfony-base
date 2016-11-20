@@ -19,7 +19,7 @@ class IndexActionTest extends \PHPUnit_Framework_TestCase
 
         $this->controllerMock->expects($this->once())
             ->method('render')
-            ->with('PHPUnit_Framework_MockObject_MockObject')
+            ->with('CrmpBaseBundle:Default:index.html.twig')
             ->willReturn($expectedReturn);
 
         $this->assertEquals($expectedReturn, $this->controllerMock->indexAction());
