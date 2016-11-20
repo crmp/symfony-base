@@ -22,9 +22,10 @@ matrix:
     # - hhvm-3.18
 
 env:
-  - ENV=dev
-  - ENV=prod
-  - ENV=test
+  matrix:
+    - ENV=dev
+    - ENV=prod
+    - ENV=test
 
 services:
   - mysql
