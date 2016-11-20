@@ -2,3 +2,4 @@ assetic:
   filters:
     scssphp:
       formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+    jsqueeze: ~
