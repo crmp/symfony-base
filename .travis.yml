@@ -7,25 +7,24 @@ matrix:
   include:
     # Drop PHP 5.6 on 31 Dec 2018
     - php: '5.6'
+      env: ENV=dev
     # Drop PHP 7.0 on 3 Dec 2018
     - php: '7.0'
+      env: ENV=dev
     - php: '7.1'
+      env: ENV=dev
     # Drop HHVM 3.12 on 29 Dec 2016
     - php: hhvm-3.12
       dist: trusty
+      env: ENV=dev
       group: edge
     # Drop HHVM 3.15 on 15 Jun 2017
     - php: hhvm-3.15
       dist: trusty
+      env: ENV=dev
       group: edge
     # Add HHVM 3.18 on 13 Feb 2017
     # - hhvm-3.18
-
-env:
-  matrix:
-    - ENV=dev
-    - ENV=prod
-    - ENV=test
 
 services:
   - mysql
