@@ -39,15 +39,15 @@ before_script:
   #- bin/populate.sh
 
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 script:
   # Assert composer.json is clean
   - composer validate --strict
   # Run unit tests
   - vendor/bin/phpunit --coverage-clover=var/phpunit/coverage.xml --coverage-text
   # CodeSniffer
-  #- vendor/bin/phpcs --config-set installed_paths opt/escapestudios/symfony2-coding-standard
-  #- vendor/bin/phpcs --standard=etc/phpcs.xml src
+  - vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard
+  - vendor/bin/phpcs --standard=Symfony2 src --ignore=Tests
   # - vendor/bin/behat --no-colors -f progress
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
