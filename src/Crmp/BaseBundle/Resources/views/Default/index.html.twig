@@ -9,7 +9,7 @@
 
     {% block stylesheets %}
         {% stylesheets filter="scssphp" output="css/base.css"
-        '@CrmpBaseBundle/Resources/public/css/base.scss' %}
+        '@CrmpBaseBundle/Resources/assets/scss/base.scss' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
     {% endblock %}
@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    {% javascripts '@CrmpBaseBundle/Resources/public/js/*' %}
+    {% javascripts '@CrmpBaseBundle/Resources/assets/js/*' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
