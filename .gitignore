@@ -1,6 +1,7 @@
 ### Project
 
 composer.lock
+.idea/symfony-base.iml
 
 
 ### Symfony rules
