@@ -4,6 +4,8 @@
 namespace Crmp\Domain;
 
 
+use Ramsey\Uuid\Uuid;
+
 class User
 {
     /**
@@ -30,11 +32,6 @@ class User
         $this->username = $username;
     }
 
-    public function getUserName()
-    {
-        return $this->username;
-    }
-
     /**
      * Get UUID for user.
      *
@@ -44,7 +41,12 @@ class User
      */
     public function getUuid()
     {
+        return Uuid::uuid5(static::UUID_NS, $this->getUserName());
+    }
 
+    public function getUserName()
+    {
+        return $this->username;
     }
 
 }
