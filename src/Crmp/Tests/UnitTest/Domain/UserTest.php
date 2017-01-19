@@ -28,7 +28,7 @@ class UserTest extends DomainTestCase
 
     public function testItHasAnUuid()
     {
-        $this->assertUuid(['User'], User::UUID_NS);
+        $this->assertUuidNamespace(['User'], User::UUID_NS);
     }
 
     public function testTheUuidUsesUsername()

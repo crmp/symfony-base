@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 
 class DomainTestCase extends UnitTestCase
 {
-    public function assertUuid($expectedNamespaces, $current)
+    public function assertUuidNamespace($expectedNamespaces, $current)
     {
         $namespace = Uuid::NIL;
 
