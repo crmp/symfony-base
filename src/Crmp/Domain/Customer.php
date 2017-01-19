@@ -10,6 +10,12 @@ class Customer
 {
     /**
      * Namespace for UUIDs of customers.
+     *
+     * The namespace is generated using:
+     *
+     * - Crmp
+     * - Domain
+     * - Customer
      */
     const UUID_NS = '6a31bdde-c213-5dde-97ea-46172d2e2693';
 
