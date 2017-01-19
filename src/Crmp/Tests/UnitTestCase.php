@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Crmp\Tests\UnitTest;
+namespace Crmp\Tests;
 
 
 class UnitTestCase extends \PHPUnit_Framework_TestCase

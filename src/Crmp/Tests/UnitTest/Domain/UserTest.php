@@ -5,8 +5,9 @@ namespace Crmp\Tests\UnitTest\Domain;
 
 
 use Crmp\Domain\User;
+use Crmp\Tests\UnitTest\DomainTestCase;
 
-class UserTest extends \PHPUnit_Framework_TestCase
+class UserTest extends DomainTestCase
 {
     protected $user;
 
@@ -19,6 +20,11 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testItHasUsername()
     {
         $this->assertEquals($this->userUsername, $this->user->getUsername());
+    }
+
+    public function testItHasAnUuid()
+    {
+        $this->assertUuid(['User'], User::UUID_NS);
     }
 
     protected function setUp()
