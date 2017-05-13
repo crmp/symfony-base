@@ -33,7 +33,7 @@
     "symfony/assetic-bundle": "^2.8",
     "symfony/monolog-bundle": "^2.8",
     "symfony/swiftmailer-bundle": "^2.3",
-    "symfony/symfony": "3.0.*",
+    "symfony/symfony": "^3.2",
     "twbs/bootstrap-sass": "^3.3"
   },
   "require-dev": {

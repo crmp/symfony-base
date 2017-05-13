@@ -184,6 +184,16 @@ class RequirementCollection implements IteratorAggregate
     }
 
     /**
+     * Adds a Requirement.
+     *
+     * @param Requirement $requirement A Requirement instance
+     */
+    public function add(Requirement $requirement)
+    {
+        $this->requirements[] = $requirement;
+    }
+
+    /**
      * Adds a mandatory requirement.
      *
      * @param bool        $fulfilled   Whether the requirement is fulfilled
@@ -194,16 +204,6 @@ class RequirementCollection implements IteratorAggregate
     public function addRequirement($fulfilled, $testMessage, $helpHtml, $helpText = null)
     {
         $this->add(new Requirement($fulfilled, $testMessage, $helpHtml, $helpText, false));
-    }
-
-    /**
-     * Adds a Requirement.
-     *
-     * @param Requirement $requirement A Requirement instance
-     */
-    public function add(Requirement $requirement)
-    {
-        $this->requirements[] = $requirement;
     }
 
     /**
@@ -403,12 +403,9 @@ class SymfonyRequirements extends RequirementCollection
             $this->addRequirement(
                 version_compare($installedPhpVersion, $requiredPhpVersion, '>='),
                 sprintf('PHP version must be at least %s (%s installed)', $requiredPhpVersion, $installedPhpVersion),
-                sprintf(
-                    'You are running PHP version "<strong>%s</strong>", but Symfony needs at least PHP "<strong>%s</strong>" to run.
+                sprintf('You are running PHP version "<strong>%s</strong>", but Symfony needs at least PHP "<strong>%s</strong>" to run.
                 Before using Symfony, upgrade your PHP installation, preferably to the latest version.',
-                    $installedPhpVersion,
-                    $requiredPhpVersion
-                ),
+                    $installedPhpVersion, $requiredPhpVersion),
                 sprintf('Install PHP %s or newer (installed version is %s)', $requiredPhpVersion, $installedPhpVersion)
             );
         }
@@ -637,12 +634,6 @@ class SymfonyRequirements extends RequirementCollection
         );
 
         $this->addRecommendation(
-            function_exists('iconv'),
-            'iconv() should be available',
-            'Install and enable the <strong>iconv</strong> extension.'
-        );
-
-        $this->addRecommendation(
             function_exists('utf8_decode'),
             'utf8_decode() should be available',
             'Install and enable the <strong>XML</strong> extension.'
@@ -699,24 +690,13 @@ class SymfonyRequirements extends RequirementCollection
             if (class_exists('Symfony\Component\Intl\Intl')) {
                 $this->addRecommendation(
                     \Symfony\Component\Intl\Intl::getIcuDataVersion() <= \Symfony\Component\Intl\Intl::getIcuVersion(),
-                    sprintf(
-                        'intl ICU version installed on your system is outdated (%s) and does not match the ICU data bundled with Symfony (%s)',
-                        \Symfony\Component\Intl\Intl::getIcuVersion(),
-                        \Symfony\Component\Intl\Intl::getIcuDataVersion()
-                    ),
+                    sprintf('intl ICU version installed on your system is outdated (%s) and does not match the ICU data bundled with Symfony (%s)', \Symfony\Component\Intl\Intl::getIcuVersion(), \Symfony\Component\Intl\Intl::getIcuDataVersion()),
                     'To get the latest internationalization data upgrade the ICU system package and the intl PHP extension.'
                 );
-                if (\Symfony\Component\Intl\Intl::getIcuDataVersion() <= \Symfony\Component\Intl\Intl::getIcuVersion(
-                    )
-                ) {
+                if (\Symfony\Component\Intl\Intl::getIcuDataVersion() <= \Symfony\Component\Intl\Intl::getIcuVersion()) {
                     $this->addRecommendation(
-                        \Symfony\Component\Intl\Intl::getIcuDataVersion(
-                        ) === \Symfony\Component\Intl\Intl::getIcuVersion(),
-                        sprintf(
-                            'intl ICU version installed on your system (%s) does not match the ICU data bundled with Symfony (%s)',
-                            \Symfony\Component\Intl\Intl::getIcuVersion(),
-                            \Symfony\Component\Intl\Intl::getIcuDataVersion()
-                        ),
+                        \Symfony\Component\Intl\Intl::getIcuDataVersion() === \Symfony\Component\Intl\Intl::getIcuVersion(),
+                        sprintf('intl ICU version installed on your system (%s) does not match the ICU data bundled with Symfony (%s)', \Symfony\Component\Intl\Intl::getIcuVersion(), \Symfony\Component\Intl\Intl::getIcuDataVersion()),
                         'To avoid internationalization data inconsistencies upgrade the symfony/intl component.'
                     );
                 }
@@ -784,6 +764,34 @@ class SymfonyRequirements extends RequirementCollection
     }
 
     /**
+     * Loads realpath_cache_size from php.ini and converts it to int.
+     *
+     * (e.g. 16k is converted to 16384 int)
+     *
+     * @return int
+     */
+    protected function getRealpathCacheSize()
+    {
+        $size = ini_get('realpath_cache_size');
+        $size = trim($size);
+        $unit = '';
+        if (!ctype_digit($size)) {
+            $unit = strtolower(substr($size, -1, 1));
+            $size = (int) substr($size, 0, -1);
+        }
+        switch ($unit) {
+            case 'g':
+                return $size * 1024 * 1024 * 1024;
+            case 'm':
+                return $size * 1024 * 1024;
+            case 'k':
+                return $size * 1024;
+            default:
+                return (int) $size;
+        }
+    }
+
+    /**
      * Defines PHP required version from Symfony version.
      *
      * @return string|false The PHP required version or false if it could not be guessed
@@ -801,33 +809,9 @@ class SymfonyRequirements extends RequirementCollection
                 continue;
             }
 
-            return (int)$package['version'][1] > 2 ? self::REQUIRED_PHP_VERSION : self::LEGACY_REQUIRED_PHP_VERSION;
+            return (int) $package['version'][1] > 2 ? self::REQUIRED_PHP_VERSION : self::LEGACY_REQUIRED_PHP_VERSION;
         }
 
         return false;
-    }
-
-    /**
-     * Loads realpath_cache_size from php.ini and converts it to int.
-     *
-     * (e.g. 16k is converted to 16384 int)
-     *
-     * @return int
-     */
-    protected function getRealpathCacheSize()
-    {
-        $size = ini_get('realpath_cache_size');
-        $size = trim($size);
-        $unit = strtolower(substr($size, -1, 1));
-        switch ($unit) {
-            case 'g':
-                return $size * 1024 * 1024 * 1024;
-            case 'm':
-                return $size * 1024 * 1024;
-            case 'k':
-                return $size * 1024;
-            default:
-                return (int) $size;
-        }
     }
 }
