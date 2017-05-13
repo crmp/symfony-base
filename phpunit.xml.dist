@@ -13,12 +13,19 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="UnitTest">
             <directory>tests</directory>
-            <directory>src/*/*Bundle/Tests</directory>
-            <directory>src/*/Tests</directory>
-            <directory>src/*/*/Tests</directory>
+            <directory>src/*/*Bundle/Tests/UnitTest</directory>
+            <directory>src/*/Tests/UnitTest</directory>
+            <directory>src/*/*/Tests/UnitTest</directory>
         </testsuite>
+        <testsuite name="IntegrationTest">
+            <directory>tests</directory>
+            <directory>src/*/*Bundle/Tests/IntegrationTest</directory>
+            <directory>src/*/Tests/IntegrationTest</directory>
+            <directory>src/*/*/Tests/IntegrationTest</directory>
+        </testsuite>
+
     </testsuites>
 
     <filter>
