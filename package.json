@@ -1,0 +1,42 @@
+{
+  "name": "symfony-base",
+  "version": "1.0.0",
+  "description": "Symfony layer for CRMP.",
+  "repository": "git@github.com:crmp/symfony-base.git",
+  "author": "Mike Pretzlaw <pretzlaw@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^7.0.1",
+    "browserify": "^14.3.0",
+    "cssnano": "^3.10.0",
+    "eslint": "^3.19.0",
+    "node-sass": "^4.5.2",
+    "postcss-cli": "^4.0.0",
+    "stylefmt": "^5.3.2",
+    "stylelint": "^7.10.1",
+    "stylelint-config-standard": "^16.0.0",
+    "uglify-js": "^3.0.3",
+    "watchify": "^3.9.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "scripts": {
+    "build:js": "npm run lint:js:fix && npm run browserify && npm run uglify",
+    "watch:js": "watchify Resources/js/main.js -o Resources/public/website/script.js --verbose --delay 300 --poll",
+    "browserify": "browserify Resources/js/main.js -o Resources/public/website/script.js",
+    "uglify": "uglifyjs Resources/public/website/script.js -o Resources/public/website/script.js",
+    "lint:js": "eslint Resources/js",
+    "lint:js:fix": "eslint Resources/js --fix",
+    "build:css": "npm run lint:css:fix && npm run lint:css && npm run scss && npm run postcss",
+    "watch:css": "onchange 'Resources/css/**/*.scss' 'Resources/css/*.scss' -- npm run scss",
+    "scss": "node-sass --output-style expanded -o Resources/public/website Resources/css",
+    "postcss": "postcss -u autoprefixer cssnano -r Resources/public/website/main.css",
+    "lint:css": "stylelint Resources/css/*.scss",
+    "lint:css:fix": "npm run lint:css:fix-only && npm run lint:css",
+    "lint:css:fix-only": "stylefmt Resources/css/*.scss"
+  },
+  "eslintConfig": {},
+  "stylelint": {
+  }
+}
