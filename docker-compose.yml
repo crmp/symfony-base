@@ -1,0 +1,19 @@
+version: '3'
+services:
+  php:
+    image: pretzlaw/php:7.1-apache
+    ports:
+      - "8000:80"
+    environment:
+      HTTPD__DocumentRoot: /var/www/web
+      SYMFONY_ENV: dev
+    volumes:
+      - ".:/var/www"
+      - "../domain-crm:/var/domain-crm"
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: crmp
+      MYSQL_DATABASE: crmp
+      MYSQL_USER: crmp
+      MYSQL_PASSWORD: crmp
