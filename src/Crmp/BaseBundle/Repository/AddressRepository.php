@@ -3,10 +3,12 @@
 namespace Crmp\BaseBundle\Repository;
 
 use Crmp\BaseBundle\Entity\Address;
+use Crmp\Domain\Address as DomainAddress;
+use Crmp\Domain\AddressRepositoryInterface;
 use Doctrine\ORM\EntityManager;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
-class AddressRepository implements \Crmp\Domain\AddressRepositoryInterface
+class AddressRepository implements AddressRepositoryInterface
 {
     /**
      * @var EntityManager
@@ -33,55 +35,14 @@ class AddressRepository implements \Crmp\Domain\AddressRepositoryInterface
      * @throws \Doctrine\ORM\ORMInvalidArgumentException
      * @throws \Doctrine\ORM\ORMException
      *
-     * @param int $id
+     * @param string $uuid
      *
      * @return \Crmp\BaseBundle\Entity\Address|null Returns the address or null if not found.
      *
      */
-    public function find($id)
+    public function find($uuid)
     {
-        return $this->entityManager->find(Address::class, $id);
-    }
-
-    /**
-     * Search for similar addresses.
-     *
-     * @param \Crmp\Domain\Address $address
-     *
-     * @return \Crmp\Domain\Address
-     */
-    public function findAllSimilar(\Crmp\Domain\Address $address)
-    {
-        // TODO: Implement findAllSimilar() method.
-    }
-
-    /**
-     * Fetch addresses that can access an inquiry.
-     *
-     * @param \Crmp\Domain\Inquiry $inquiry
-     *
-     * @return \Crmp\Domain\Address
-     */
-    public function findByInquiry(\Crmp\Domain\Inquiry $inquiry)
-    {
-        // TODO: Implement findByInquiry() method.
-    }
-
-    /**
-     * Search for one similar address.
-     *
-     * This uses the ::findAllSimilar method
-     * and return the first match.
-     *
-     * @see ::findAllSimilar()
-     *
-     * @param \Crmp\Domain\Address $address
-     *
-     * @return mixed
-     */
-    public function findSimilar(\Crmp\Domain\Address $address)
-    {
-        // TODO: Implement findSimilar() method.
+        return $this->entityManager->find(Address::class, $uuid);
     }
 
     /**
@@ -90,13 +51,13 @@ class AddressRepository implements \Crmp\Domain\AddressRepositoryInterface
      * Addresses with an ID will be updated.
      * Those with no id will be created.
      *
-     * @param \Crmp\Domain\Address $address
+     * @param DomainAddress $address
      *
-     * @return mixed
+     * @return void
      */
-    public function persist(\Crmp\Domain\Address $address)
+    public function persist(DomainAddress $address)
     {
-        $this->repository->persistAsFirstChild($address);
+        $this->repository->persistAsLastChild($address);
     }
 
     public function flush(Address $address = null)

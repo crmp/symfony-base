@@ -54,6 +54,14 @@ class Address extends \Crmp\Domain\Address
             $this->parent = $this->getSuperordinateAddress();
             $this->level  = (int)$this->getSuperordinateAddress()->getLevel() + 1;
         }
+
+
+        $this->root = $this;
+        if ($superAddress instanceof Address) {
+            // Trees reference the node itself on root level.
+            $this->root = $superAddress->getRoot();
+        }
+
     }
 
     /**

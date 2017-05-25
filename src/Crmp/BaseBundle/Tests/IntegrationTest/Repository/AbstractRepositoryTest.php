@@ -2,7 +2,9 @@
 
 namespace Crmp\BaseBundle\Tests\IntegrationTest\Repository;
 
-abstract class AbstractRepositoryTest extends \PHPUnit_Framework_TestCase
+use Crmp\BaseBundle\Tests\IntegrationTestCase;
+
+abstract class AbstractRepositoryTest extends IntegrationTestCase
 {
 
 }

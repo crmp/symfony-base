@@ -8,6 +8,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class IntegrationTestCase extends KernelTestCase
 {
+    const ADDRESS_SUN_UUID = 'aaaaaaaa-aaaa-aaaa-aaaaaaaaaaaaaaaaa';
+
     /**
      * @var ContainerInterface
      */

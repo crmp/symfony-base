@@ -20,7 +20,9 @@ class PersistTest extends IntegrationTestCase
         $repo->persist($address);
         $repo->flush($address);
 
-        static::assertEquals($address, $repo->find($address->getUuid()));
+        $loaded = $repo->find($address->getUuid());
+
+        static::assertEquals($address, $loaded);
 
         $repo->remove($address);
         $repo->flush($address);
