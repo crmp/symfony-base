@@ -34,14 +34,6 @@ class AccessKey
     protected $uuid;
 
     /**
-     * @return Address
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
      * AccessKey constructor.
      *
      * @param string $publicKey

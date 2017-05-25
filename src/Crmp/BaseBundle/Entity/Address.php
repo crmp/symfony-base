@@ -23,11 +23,6 @@ class Address extends \Crmp\Domain\Address
     protected $root;
 
     /**
-     * @var string
-     */
-    protected $email;
-
-    /**
      * @var AccessKey[]
      */
     protected $accessKeys = [];
@@ -86,13 +81,5 @@ class Address extends \Crmp\Domain\Address
     public function getAccessKeys()
     {
         return $this->accessKeys;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 }
