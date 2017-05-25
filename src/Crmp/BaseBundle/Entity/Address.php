@@ -53,7 +53,7 @@ class Address extends \Crmp\Domain\Address
     }
 
     /**
-     * @return Address|null
+     * @return Address
      */
     public function getRoot()
     {
@@ -66,13 +66,5 @@ class Address extends \Crmp\Domain\Address
     public function getParent()
     {
         return $this->parent;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
     }
 }
