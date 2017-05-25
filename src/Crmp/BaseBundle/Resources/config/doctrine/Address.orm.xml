@@ -35,12 +35,12 @@
             <gedmo:tree-root/>
         </many-to-one>
 
-        <many-to-one field="parent" target-entity="Crmp\BaseBundle\Entity\Address" inversed-by="subAddresses">
+        <many-to-one field="superordinateAddress" target-entity="Crmp\BaseBundle\Entity\Address" inversed-by="subAddresses">
             <join-column name="parent" referenced-column-name="uuid" on-delete="RESTRICT" nullable="true"/>
             <gedmo:tree-parent/>
         </many-to-one>
 
-        <one-to-many field="subAddresses" target-entity="Crmp\BaseBundle\Entity\Address" mapped-by="parent">
+        <one-to-many field="subAddresses" target-entity="Crmp\BaseBundle\Entity\Address" mapped-by="superordinateAddress">
             <order-by>
                 <order-by-field name="left" direction="ASC" />
             </order-by>
