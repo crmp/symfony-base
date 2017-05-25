@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Crmp\BaseBundle\Tests\UnitTests\Domain;
+namespace Crmp\BaseBundle\Tests\UnitTests\Entity;
 
 
 use Crmp\BaseBundle\Entity\Address;
