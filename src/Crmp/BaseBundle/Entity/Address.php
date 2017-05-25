@@ -21,6 +21,11 @@ class Address extends \Crmp\Domain\Address
     protected $root;
 
     /**
+     * @var string
+     */
+    protected $email;
+
+    /**
      * @var Address|null
      */
     protected $parent;
@@ -40,7 +45,7 @@ class Address extends \Crmp\Domain\Address
 
         if ($this->getSuperordinateAddress()) {
             $this->parent = $this->getSuperordinateAddress();
-            $this->level  = (int) $this->getSuperordinateAddress()->getLevel() + 1;
+            $this->level  = (int)$this->getSuperordinateAddress()->getLevel() + 1;
         }
     }
 
@@ -50,6 +55,14 @@ class Address extends \Crmp\Domain\Address
     public function getLevel()
     {
         return $this->level;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**

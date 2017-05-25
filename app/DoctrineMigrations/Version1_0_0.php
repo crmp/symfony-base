@@ -20,6 +20,9 @@ class Version1_0_0 extends AbstractMigration
         $table->addColumn('name', Type::STRING)->setNotnull(true);
         $table->addColumn('enabled', Type::BOOLEAN)->setDefault(true);
 
+        $table->addColumn('email', Type::STRING)->setNotnull(false);
+        $table->addUniqueIndex(['email']);
+
         // Nested set
         $table->addColumn('lft', Type::INTEGER)->setUnsigned(true);
         $table->addColumn('rgt', Type::INTEGER)->setUnsigned(true);
