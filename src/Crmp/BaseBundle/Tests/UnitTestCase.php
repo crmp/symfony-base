@@ -4,6 +4,8 @@
 namespace Crmp\BaseBundle\Tests;
 
 
-class UnitTestCase extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class UnitTestCase extends TestCase
 {
 }
