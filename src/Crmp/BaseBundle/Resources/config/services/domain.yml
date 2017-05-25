@@ -1,6 +1,13 @@
 services:
   Crmp\BaseBundle\Repository\AddressRepository:
     class: Crmp\BaseBundle\Repository\AddressRepository
+    arguments:
+      - '@doctrine.orm.default_entity_manager'
+      - '@crmp.base_bundle.doctrine.address_repository'
+
+
+  crmp.base_bundle.doctrine.address_repository:
+    class: Gedmo\Tree\Entity\Repository\NestedTreeRepository
     factory: ['@doctrine.orm.default_entity_manager', getRepository]
     arguments:
       - Crmp\BaseBundle\Entity\Address

@@ -17,9 +17,12 @@ class PersistTest extends IntegrationTestCase
         /** @var AddressRepository $repo */
         $repo = $this->getContainer()->get(AddressRepository::class);
 
-        $repo->persistAsFirstChild($address);
+        $repo->persist($address);
         $repo->flush($address);
 
-        // $repo->removeFromTree($address);
+        static::assertEquals($address, $repo->find($address->getUuid()));
+
+        $repo->remove($address);
+        $repo->flush($address);
     }
 }

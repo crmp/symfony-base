@@ -7,7 +7,7 @@
 
     <entity name="Crmp\BaseBundle\Entity\Address"
             table="address"
-            repository-class="Crmp\BaseBundle\Repository\AddressRepository"
+            repository-class="Gedmo\Tree\Entity\Repository\NestedTreeRepository"
     >
         <id name="uuid" type="string">
             <generator strategy="NONE" />

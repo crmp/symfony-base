@@ -4,15 +4,26 @@ namespace Crmp\BaseBundle\Repository;
 
 use Crmp\BaseBundle\Entity\Address;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
-class AddressRepository extends NestedTreeRepository implements \Crmp\Domain\AddressRepositoryInterface
+class AddressRepository implements \Crmp\Domain\AddressRepositoryInterface
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
+     * @var EntityManager
      */
     private $entityManager;
+
+    /**
+     * AddressRepository constructor.
+     *
+     * @param EntityManager        $entityManager
+     * @param NestedTreeRepository $repository
+     */
+    public function __construct(EntityManager $entityManager, NestedTreeRepository $repository)
+    {
+        $this->repository    = $repository;
+        $this->entityManager = $entityManager;
+    }
 
     /**
      * Find an address by identifier.
@@ -85,11 +96,16 @@ class AddressRepository extends NestedTreeRepository implements \Crmp\Domain\Add
      */
     public function persist(\Crmp\Domain\Address $address)
     {
-        // TODO: Implement persist() method.
+        $this->repository->persistAsLastChild($address);
     }
 
     public function flush(Address $address = null)
     {
-        $this->_em->flush($address);
+        $this->entityManager->flush($address);
+    }
+
+    public function remove(Address $address)
+    {
+        $this->repository->removeFromTree($address);
     }
 }
