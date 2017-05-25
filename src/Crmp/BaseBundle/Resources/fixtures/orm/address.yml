@@ -1,0 +1,26 @@
+Crmp\BaseBundle\Entity\Address:
+  address_root_{1..9}:
+    left: '<($current*2-1)>'
+    right: '<($current*2)>'
+    __construct:
+      - '<name()>'
+      - '80%? true: false'
+
+  # One with children
+  address_root_10:
+    __construct:
+      - 'Ymag Otua'
+      - true
+
+  address_sun:
+    # That one solar system where the sun screams.
+    uuid: "aaaaaaaa-aaaa-aaaa-aaaaaaaaaaaaaaaaa"
+    __construct:
+      - 'Sun'
+      - true
+
+  address_merkur:
+    __construct:
+      - 'Merkur'
+      - true
+      - '@address_sun'

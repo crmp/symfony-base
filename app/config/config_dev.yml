@@ -7,9 +7,20 @@ framework:
         strict_requirements: true
     profiler: { only_exceptions: false }
 
+hautelook_alice:
+  fixtures_path: "Resources/fixtures/orm"
+
 web_profiler:
     toolbar: true
     intercept_redirects: false
+
+services:
+  app.fixtures.reflection_property_accessor:
+    class: Nelmio\Alice\PropertyAccess\ReflectionPropertyAccessor
+    public: false
+    decorates: nelmio_alice.property_accessor
+    decoration_priority: -10
+    arguments: ['@app.fixtures.reflection_property_accessor.inner']
 
 monolog:
     handlers:
