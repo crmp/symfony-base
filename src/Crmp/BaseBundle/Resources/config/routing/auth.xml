@@ -4,9 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="crmp_base_homepage" path="/">
-        <default key="_controller">CrmpBaseBundle:Default:index</default>
+    <route id="crmp_base_auth" path="/login">
+        <default key="_controller">Crmp\BaseBundle\Controller\AuthController::loginAction</default>
     </route>
-
-    <import resource="routing/auth.xml" prefix="/auth" />
 </routes>

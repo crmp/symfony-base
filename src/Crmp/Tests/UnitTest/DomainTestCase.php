@@ -7,7 +7,7 @@ namespace Crmp\Tests\UnitTest;
 use Crmp\Tests\UnitTestCase;
 use Ramsey\Uuid\Uuid;
 
-class DomainTestCase extends UnitTestCase
+class DomainTestCase extends \PHPUnit_Framework_TestCase
 {
     public function assertUuidNamespace($expectedNamespaces, $current)
     {

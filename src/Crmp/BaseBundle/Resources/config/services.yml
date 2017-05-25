@@ -1,4 +1,5 @@
 imports:
   - { resource: 'services/domain.yml' }
+  - { resource: 'services/controller.yml' }
 
 services:
