@@ -27,6 +27,16 @@ class FindTest extends AbstractRepositoryTest
         }
     }
 
+    public function testLoadsAccessKeys()
+    {
+        static::assertNotEmpty($this->addressSun->getAccessKeys());
+
+        foreach ($this->addressSun->getAccessKeys() as $accessKey) {
+            static::assertInstanceOf(Address\AccessKey::class, $accessKey);
+            static::assertNotEmpty($accessKey->getPrivateKey());
+        }
+    }
+
     protected function setUp()
     {
         parent::setUp();
