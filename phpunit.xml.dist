@@ -25,6 +25,12 @@
             <directory>src/*/Tests/IntegrationTest</directory>
             <directory>src/*/*/Tests/IntegrationTest</directory>
         </testsuite>
+        <testsuite name="AcceptanceTest">
+            <directory>tests</directory>
+            <directory>src/*/*Bundle/Tests/AcceptanceTest</directory>
+            <directory>src/*/Tests/AcceptanceTest</directory>
+            <directory>src/*/*/Tests/AcceptanceTest</directory>
+        </testsuite>
 
     </testsuites>
 
