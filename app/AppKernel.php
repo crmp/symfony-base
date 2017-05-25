@@ -23,6 +23,9 @@ class AppKernel extends Kernel
 
             // Doctrine Nested Sets
             new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
+            // RESTful
+            new \FOS\RestBundle\FOSRestBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

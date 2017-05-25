@@ -15,15 +15,22 @@ class AcceptanceTestCase extends WebTestCase
 
     protected static function getContainer()
     {
-        if ( ! self::$kernel || ! self::$kernel->getContainer()) {
-            static::bootKernel();
-        }
+        self::assertKernel();
 
         return self::$kernel->getContainer();
     }
 
-    public static function assertServiceInstanceOf($expectedClass, $serviceName)
+    protected static function assertServiceInstanceOf($expectedClass, $serviceName)
     {
         static::assertInstanceOf($expectedClass, static::getContainer()->get($serviceName));
+    }
+
+    protected static function assertKernel()
+    {
+        if ( self::$kernel && self::$kernel->getContainer()) {
+            return;
+        }
+
+        static::bootKernel();
     }
 }

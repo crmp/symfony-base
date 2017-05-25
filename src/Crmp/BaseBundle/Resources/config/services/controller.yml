@@ -3,3 +3,5 @@ services:
     class: Crmp\BaseBundle\Controller\AuthController
     arguments:
       - '@crmp\basebundle\repository\addressrepository'
+    calls:
+      - ['setContainer', ['@service_container']]

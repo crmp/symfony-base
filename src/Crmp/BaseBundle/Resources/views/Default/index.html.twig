@@ -19,7 +19,10 @@
 <body>
 
 {% block body %}
-    Hello World!
+    {% block content %}
+        Hello World!
+    {% endblock %}
+
 {% endblock %}
 
 {% block javascripts %}

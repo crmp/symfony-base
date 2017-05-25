@@ -6,7 +6,7 @@ namespace Crmp\BaseBundle\Controller;
 
 use Crmp\BaseBundle\Repository\AddressRepository;
 
-class AuthController
+class AuthController extends AbstractCrmpController
 {
     /**
      * @var AddressRepository
@@ -28,6 +28,6 @@ class AuthController
 
     public function loginAction()
     {
-
+        return $this->handleView($this->view()->setTemplate('@CrmpBase/Auth/login.html.twig'));
     }
 }

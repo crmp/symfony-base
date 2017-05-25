@@ -26,6 +26,7 @@
     "doctrine/doctrine-cache-bundle": "^1.2",
     "doctrine/doctrine-migrations-bundle": "^1.2",
     "doctrine/orm": "^2.5",
+    "friendsofsymfony/rest-bundle": "^2.2",
     "gedmo/doctrine-extensions": "^2.4",
     "incenteev/composer-parameter-handler": "^2.0",
     "leafo/scssphp": "^0.6.6",
