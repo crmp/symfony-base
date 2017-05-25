@@ -1,5 +1,6 @@
 services:
   Crmp\BaseBundle\Repository\AddressRepository:
     class: Crmp\BaseBundle\Repository\AddressRepository
+    factory: ['@doctrine.orm.default_entity_manager', getRepository]
     arguments:
-      - '@doctrine.orm.default_entity_manager'
+      - Crmp\BaseBundle\Entity\Address

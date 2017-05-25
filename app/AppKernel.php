@@ -20,6 +20,9 @@ class AppKernel extends Kernel
 
             // Doctrine Migrations
             new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+
+            // Doctrine Nested Sets
+            new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
