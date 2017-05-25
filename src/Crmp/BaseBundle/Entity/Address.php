@@ -2,6 +2,8 @@
 
 namespace Crmp\BaseBundle\Entity;
 
+use Crmp\BaseBundle\Entity\Address\AccessKey;
+
 /**
  * Address
  *
@@ -24,6 +26,11 @@ class Address extends \Crmp\Domain\Address
      * @var string
      */
     protected $email;
+
+    /**
+     * @var AccessKey[]
+     */
+    protected $accessKeys = [];
 
     /**
      * @var Address|null
@@ -55,6 +62,22 @@ class Address extends \Crmp\Domain\Address
     public function getLevel()
     {
         return $this->level;
+    }
+
+    /**
+     * @param AccessKey $accessKey
+     */
+    public function addAccessKey(AccessKey $accessKey)
+    {
+        $this->accessKeys[] = $accessKey;
+    }
+
+    /**
+     * @return AccessKey[]
+     */
+    public function getAccessKeys()
+    {
+        return $this->accessKeys;
     }
 
     /**

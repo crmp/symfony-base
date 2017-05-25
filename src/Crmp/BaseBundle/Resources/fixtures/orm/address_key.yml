@@ -1,0 +1,6 @@
+Crmp\BaseBundle\Entity\Address\AccessKey:
+  address_sun_key:
+    address: '@address_sun'
+    __construct:
+      - 'the color before'
+      - 'letmein'

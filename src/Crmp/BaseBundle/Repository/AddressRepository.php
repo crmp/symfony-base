@@ -96,7 +96,7 @@ class AddressRepository implements \Crmp\Domain\AddressRepositoryInterface
      */
     public function persist(\Crmp\Domain\Address $address)
     {
-        $this->repository->persistAsLastChild($address);
+        $this->repository->persistAsFirstChild($address);
     }
 
     public function flush(Address $address = null)

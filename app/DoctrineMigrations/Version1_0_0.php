@@ -10,6 +10,7 @@ class Version1_0_0 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->addressUp($schema);
+        $this->accessKeyUp($schema);
     }
 
     protected function addressUp(Schema $schema)
@@ -40,10 +41,26 @@ class Version1_0_0 extends AbstractMigration
     public function down(Schema $schema)
     {
         $this->addressDown($schema);
+        $this->accessKeyDown($schema);
     }
 
     protected function addressDown(Schema $schema)
     {
         $schema->dropTable(static::TABLE_ADDRESS);
+    }
+
+    protected function accessKeyUp(Schema $schema)
+    {
+        $table = $schema->createTable(static::TABLE_ACCESS_KEY);
+
+        $table->addColumn('uuid', Type::STRING);
+        $table->addColumn('public_key', Type::STRING)->setNotnull(false)->setDefault(null);
+        $table->addColumn('private_key', Type::STRING)->setNotnull(false)->setDefault(null);
+        $table->addColumn('address', Type::STRING);
+    }
+
+    protected function accessKeyDown(Schema $schema)
+    {
+        $schema->dropTable(static::TABLE_ACCESS_KEY);
     }
 }

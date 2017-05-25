@@ -46,6 +46,8 @@
             </order-by>
         </one-to-many>
 
+        <one-to-many field="accessKeys" target-entity="Crmp\BaseBundle\Entity\Address\AccessKey" mapped-by="uuid" />
+
         <gedmo:tree type="nested"/>
 
         <lifecycle-callbacks>
