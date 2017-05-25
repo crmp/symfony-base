@@ -3,10 +3,14 @@
 
 namespace Crmp\BaseBundle\Entity\Address;
 
-
 use Crmp\BaseBundle\Entity\Address;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * AccessKey
+ *
+ * @package Crmp\BaseBundle\Entity\Address
+ */
 class AccessKey
 {
     /**
@@ -65,6 +69,11 @@ class AccessKey
         return $this->privateKey;
     }
 
+    /**
+     * Read UUID4.
+     *
+     * @return \Ramsey\Uuid\UuidInterface|string
+     */
     public function getUuid()
     {
         if ($this->uuid) {

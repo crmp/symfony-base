@@ -8,6 +8,11 @@ use Crmp\Domain\AddressRepositoryInterface;
 use Doctrine\ORM\EntityManager;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
+/**
+ * Repository for addresses.
+ *
+ * @package Crmp\BaseBundle\Repository
+ */
 class AddressRepository implements AddressRepositoryInterface
 {
     /**
@@ -60,11 +65,21 @@ class AddressRepository implements AddressRepositoryInterface
         $this->repository->persistAsLastChild($address);
     }
 
+    /**
+     * Write changes to persistence.
+     *
+     * @param Address|null $address
+     */
     public function flush(Address $address = null)
     {
         $this->entityManager->flush($address);
     }
 
+    /**
+     * Delete an address.
+     *
+     * @param Address $address
+     */
     public function remove(Address $address)
     {
         $this->repository->removeFromTree($address);

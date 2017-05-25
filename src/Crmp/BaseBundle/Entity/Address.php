@@ -52,7 +52,7 @@ class Address extends \Crmp\Domain\Address
 
         if ($this->getSuperordinateAddress()) {
             $this->parent = $this->getSuperordinateAddress();
-            $this->level  = (int)$this->getSuperordinateAddress()->getLevel() + 1;
+            $this->level  = (int) $this->getSuperordinateAddress()->getLevel() + 1;
         }
 
         $this->root = $this;
@@ -68,6 +68,14 @@ class Address extends \Crmp\Domain\Address
     public function getLevel()
     {
         return $this->level;
+    }
+
+    /**
+     * @return Address
+     */
+    public function getRoot()
+    {
+        return $this->root;
     }
 
     /**
@@ -92,14 +100,6 @@ class Address extends \Crmp\Domain\Address
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * @return Address
-     */
-    public function getRoot()
-    {
-        return $this->root;
     }
 
     /**

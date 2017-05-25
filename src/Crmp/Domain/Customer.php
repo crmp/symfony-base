@@ -3,9 +3,13 @@
 
 namespace Crmp\Domain;
 
-
 use Ramsey\Uuid\Uuid;
 
+/**
+ * Customer
+ *
+ * @package Crmp\Domain
+ */
 class Customer
 {
     /**
@@ -24,11 +28,21 @@ class Customer
      */
     protected $name;
 
+    /**
+     * Create customer by name.
+     *
+     * @param string $name Name of the customer.
+     */
     public function __construct($name)
     {
         $this->name = $name;
     }
 
+    /**
+     * UUID5 by name.
+     *
+     * @return \Ramsey\Uuid\UuidInterface
+     */
     public function getUuid()
     {
         return Uuid::uuid5(static::UUID_NS, $this->getName());
