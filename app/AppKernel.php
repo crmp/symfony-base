@@ -40,6 +40,16 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
+    public function loadClassCache($name = 'classes', $extension = '.php')
+    {
+        if ($this->getEnvironment() !== 'prod') {
+            return;
+        }
+
+        parent::loadClassCache($name, $extension);
+    }
+
+
     public function getCacheDir()
     {
         return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
