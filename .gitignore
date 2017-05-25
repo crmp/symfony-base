@@ -2,7 +2,7 @@
 
 composer.lock
 .idea/symfony-base.iml
-
+node_modules
 
 ### Symfony rules
 
